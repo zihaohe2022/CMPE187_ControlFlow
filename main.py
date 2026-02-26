@@ -22,7 +22,7 @@ def check_financial_aid_status(student):
     return "Not Eligible"
 
 
-# Test Case 1: Fully eligible (meets residency)
+# Test Case 1: (Expected: Eligible)
 student1 = {
     "age": 20,
     "years_in_ca": 3,
@@ -32,7 +32,7 @@ student1 = {
     "household_income": 20000
 }
 
-# Test Case 2: Not residency qualified but low income → Dean
+# Test Case 2: (Expected: Deferred for Dean's Consideration)
 student2 = {
     "age": 22,
     "years_in_ca": 0,
@@ -42,7 +42,7 @@ student2 = {
     "household_income": 3000
 }
 
-# Test Case 3: eligible
+# Test Case 3 (Expected: Eligible)
 student3 = {
     "age": 23,
     "years_in_ca": 0,
