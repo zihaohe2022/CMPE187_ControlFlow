@@ -1,0 +1,58 @@
+1    def check_financial_aid_status(student):
+2    
+3        # 1. Age check
+4        if not (18 <= student["age"] <= 24):
+5            return "Not Eligible"
+6    
+7        # 2. Residency check
+8        residency_met = (
+9            student["years_in_ca"] >= 2 or
+10            student["worked_months_in_ca"] >= 6 or
+11            student["parents_years_in_ca"] >= 1 or
+12            student["volunteer_proof"] is True
+13        )
+14    
+15        if residency_met:
+16            return "Eligible"
+17    
+18        # 3. Dean's consideration
+19        if student["household_income"] < 5000:
+20            return "Deferred for Dean's Consideration"
+21    
+22        return "Not Eligible"
+23    
+24    
+25    # Test Case 1: (Expected: Eligible)
+26    student1 = {
+27        "age": 20,
+28        "years_in_ca": 3,
+29        "worked_months_in_ca": 0,
+30        "parents_years_in_ca": 0,
+31        "volunteer_proof": False,
+32        "household_income": 20000
+33    }
+34    
+35    # Test Case 2: (Expected: Deferred for Dean's Consideration)
+36    student2 = {
+37        "age": 22,
+38        "years_in_ca": 0,
+39        "worked_months_in_ca": 0,
+40        "parents_years_in_ca": 0,
+41        "volunteer_proof": False,
+42        "household_income": 3000
+43    }
+44    
+45    # Test Case 3 (Expected: Eligible)
+46    student3 = {
+47        "age": 23,
+48        "years_in_ca": 0,
+49        "worked_months_in_ca": 0,
+50        "parents_years_in_ca": 0,
+51        "volunteer_proof": True,
+52        "household_income": 15000
+53    }
+54    
+55    
+56    print("Student 1:", check_financial_aid_status(student1))
+57    print("Student 2:", check_financial_aid_status(student2))
+58    print("Student 3:", check_financial_aid_status(student3))
